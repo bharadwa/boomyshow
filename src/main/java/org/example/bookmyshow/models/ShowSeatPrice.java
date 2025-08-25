@@ -1,24 +1,30 @@
 package org.example.bookmyshow.models;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 
 @Getter
 @Setter
-@Entity(name="show_seat_price")
+@Entity(name="show_seat_prices")
 public class ShowSeatPrice extends BaseModel {
 
-    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Show show;
 
-    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     private SeatType seatType;
 
     private double price;
 
+   // ShowSeat PRice (many) --- show (1)
+    // 1 show seat Price is present in one show
+    // 1 show contains multiple show seat price --->
+
+   // 1 A 100    ---> (show)
+   // 1 B 200
+   // 2 A 150
+
+   // Show Seat Price (many) --- Seat Type (1)
 }

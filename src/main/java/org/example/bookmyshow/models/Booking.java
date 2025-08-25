@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Date;
 import java.util.List;
 
 @Getter
@@ -12,17 +13,22 @@ import java.util.List;
 @Entity(name="bookings")
 public class Booking extends BaseModel {
 
-    private int ticketCount;
+    private int noOfSeats;
 
     private double amount;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
-    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "booking", fetch = FetchType.LAZY)
     private List<Payment> payments;
 
-    @OneToMany (fetch = FetchType.LAZY,cascade = CascadeType.PERSIST)
+    @ManyToMany (fetch = FetchType.LAZY) //for cancelled booking we have many to many
     private List<ShowSeat> showSeats;
+
+    @Enumerated(EnumType.STRING)
+    private BookingStatus bookingStatus;
+
+    private Date bookingDate;
 
 }

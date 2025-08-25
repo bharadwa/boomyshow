@@ -1,9 +1,6 @@
 package org.example.bookmyshow.models;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import java.util.List;
@@ -17,7 +14,10 @@ public class Theater extends BaseModel {
 
     private String address;
 
-    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "theater", fetch = FetchType.LAZY)
     private List<Screen> screenList;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Region region;
 
 }

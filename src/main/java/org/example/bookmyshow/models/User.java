@@ -23,6 +23,6 @@ public class User extends BaseModel {
 
     private String address;
 
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Booking> bookingList;
 }

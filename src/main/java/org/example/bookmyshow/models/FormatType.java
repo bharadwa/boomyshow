@@ -4,5 +4,6 @@ public enum FormatType {
 
     TWO_D(),
     THREE_D(),
-    FOUR_DX();
+    FOUR_DX(),
+    DOLBY_ATMOS();
 }

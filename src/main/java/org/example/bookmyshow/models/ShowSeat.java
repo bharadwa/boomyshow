@@ -10,15 +10,24 @@ import lombok.Setter;
 public class ShowSeat extends BaseModel {
 
 
-    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.PERSIST)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Show show;
 
-    @ManyToOne(fetch =  FetchType.EAGER,cascade = CascadeType.PERSIST)
+    @ManyToOne(fetch =  FetchType.LAZY)
     private Seat seat;
 
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
-    private SeatType seatType;
-
+    @Enumerated(EnumType.STRING)
     private SeatStatus seatStatus;
 
+
+    // ShowSeat (many) --- Show (1)
+    // 1 A Booked
+    // 1 B Available
+    // 1 C Available
+    // 1 D Booked
+    // 2 A Available
+    // 2 B Booked
+    // 2 C Available
+    // 2 D Available
+    // ShowSeat (many) --- Seat (1)
 }

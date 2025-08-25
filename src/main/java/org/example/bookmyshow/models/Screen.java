@@ -1,9 +1,6 @@
 package org.example.bookmyshow.models;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,6 +13,13 @@ public class Screen extends BaseModel {
 
     private int screenNumber;
 
-    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "screen", fetch = FetchType.LAZY)
     private List<Seat> seats;
+
+    @Enumerated
+    @ElementCollection(fetch = FetchType.LAZY)
+    private List<FormatType> screenFeatures;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Theater theater;
 }

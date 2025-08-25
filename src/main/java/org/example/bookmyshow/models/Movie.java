@@ -1,10 +1,7 @@
 package org.example.bookmyshow.models;
 
 import com.fasterxml.jackson.databind.ser.Serializers;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,10 +15,24 @@ public class Movie extends BaseModel {
 
     private String name;
 
-    @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.PERSIST)
+    private String description;
+
+    private String director;
+
+    private String title;
+
+    private float runTime;
+
+    @ManyToMany(fetch = FetchType.LAZY)
     private List<Actor> actors;
 
+    @Enumerated
+    @ElementCollection
     private List<LanguageType>  languagesSupported;
+
+    @Enumerated
+    @ElementCollection
+    private List<FormatType> features;
 
 
 }

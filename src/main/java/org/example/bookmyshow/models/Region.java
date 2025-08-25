@@ -16,7 +16,7 @@ public class Region extends BaseModel{
 
    private String description;
 
-   @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.PERSIST)
+   @OneToMany(mappedBy ="region",fetch = FetchType.LAZY)
    private List<Theater> theaterList;
 
 
