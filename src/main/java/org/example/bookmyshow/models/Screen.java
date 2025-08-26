@@ -16,8 +16,7 @@ public class Screen extends BaseModel {
     @OneToMany(mappedBy = "screen", fetch = FetchType.LAZY)
     private List<Seat> seats;
 
-    @Enumerated
-    @ElementCollection(fetch = FetchType.LAZY)
+    @Convert(converter = FormatTypeListConvertor.class)
     private List<FormatType> screenFeatures;
 
     @ManyToOne(fetch = FetchType.LAZY)

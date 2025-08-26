@@ -14,14 +14,14 @@ public class LanguageTypeListConverter implements AttributeConverter<List<Langua
     @Override
     public String convertToDatabaseColumn(List<LanguageType> attribute) {
         if (attribute == null || attribute.isEmpty()) return "";
-        return attribute.stream().map(Enum::name).collect(Collectors.joining(SPLIT_CHAR));
+        return attribute.stream().map(n -> n.name()).collect(Collectors.joining(SPLIT_CHAR));
     }
 
     @Override
     public List<LanguageType> convertToEntityAttribute(String dbData) {
         if (dbData == null || dbData.isEmpty()) return Collections.emptyList();
         return Arrays.stream(dbData.split(SPLIT_CHAR))
-                .map(LanguageType::valueOf)
+                .map(s->LanguageType.valueOf(s))
                 .collect(Collectors.toList());
     }
 }

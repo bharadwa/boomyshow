@@ -29,8 +29,7 @@ public class Movie extends BaseModel {
     @Convert(converter = LanguageTypeListConverter.class)
     private List<LanguageType>  languagesSupported;
 
-    @Enumerated(EnumType.STRING)
-    @ElementCollection
+    @Convert(converter = FormatTypeListConvertor.class)
     private List<FormatType> features;
 
 

@@ -34,8 +34,8 @@ public class Show extends BaseModel {
     @Enumerated(EnumType.STRING)
     private LanguageType language;
 
-    @Enumerated(EnumType.STRING)
-    private FormatType formatType;
+    @Convert(converter = FormatTypeListConvertor.class)
+    private List<FormatType> formatType;
 
 
 }
