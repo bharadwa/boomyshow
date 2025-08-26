@@ -32,5 +32,8 @@ public class Movie extends BaseModel {
     @Convert(converter = FormatTypeListConvertor.class)
     private List<FormatType> features;
 
+    @OneToMany(mappedBy = "movie", fetch = FetchType.LAZY)
+    private List<Rating> ratings;
+
 
 }

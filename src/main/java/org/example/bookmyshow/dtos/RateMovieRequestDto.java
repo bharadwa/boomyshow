@@ -1,0 +1,13 @@
+package org.example.bookmyshow.dtos;
+
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+public class RateMovieRequestDto {
+    private long userId;
+    private long movieId;
+    private int rating;
+}
