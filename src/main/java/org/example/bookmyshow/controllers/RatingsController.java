@@ -15,8 +15,8 @@ public class RatingsController {
         this.ratingService=ratingService;
     }
 
-    public RateMovieResponseDto rateMovie(RateMovieRequestDto requestDto){
-        RateMovieResponseDto response =new RateMovieResponseDto();
+    public RateMovieResponseDTO rateMovie(RateMovieRequestDTO requestDto){
+        RateMovieResponseDTO response =new RateMovieResponseDTO();
         try {
             response.setRating(this.ratingService.rateMovie(requestDto.getUserId(),requestDto.getMovieId(),requestDto.getRating()));
             response.setResponseStatus(ResponseStatus.SUCCESS);
@@ -26,9 +26,9 @@ public class RatingsController {
         return response;
     }
 
-    public GetAverageMovieResponseDto getAverageMovieRating(GetAverageMovieRequestDto requestDto){
+    public GetAverageMovieResponseDTO getAverageMovieRating(GetAverageMovieRequestDTO requestDto){
 
-        GetAverageMovieResponseDto response =new GetAverageMovieResponseDto();
+        GetAverageMovieResponseDTO response =new GetAverageMovieResponseDTO();
         
         try {
             response.setAverageRating(this.ratingService.getAverageRating(requestDto.getMovieId()));

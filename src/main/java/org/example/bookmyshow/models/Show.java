@@ -23,7 +23,9 @@ public class Show extends BaseModel {
     @ManyToOne(fetch = FetchType.EAGER)
     private Screen screen;
 
-    private Date showTime;
+    private Date startTime;
+
+    private Date endTime;
 
     @OneToMany(mappedBy = "show",fetch = FetchType.LAZY)
     private List<ShowSeat> showSeatList;
@@ -34,7 +36,8 @@ public class Show extends BaseModel {
     @Enumerated(EnumType.STRING)
     private LanguageType language;
 
-    @Convert(converter = FormatTypeListConvertor.class)
+    @Enumerated(EnumType.STRING)
+    @ElementCollection
     private List<FormatType> formatType;
 
 

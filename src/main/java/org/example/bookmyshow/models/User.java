@@ -1,10 +1,7 @@
 package org.example.bookmyshow.models;
 
 import com.fasterxml.jackson.databind.ser.Serializers;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -21,9 +18,8 @@ public class User extends BaseModel {
 
     private String password;
 
-    private String phoneNumber;
-
-    private String address;
+    @Enumerated(EnumType.STRING)
+    private UserType userType;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Booking> bookingList;

@@ -4,7 +4,7 @@ public enum SeatStatus {
 
     AVAILABLE,
     BOOKED,
-    LOCKED;
+    BLOCKED;
 
 
     public static SeatStatus fromValue(String value) {

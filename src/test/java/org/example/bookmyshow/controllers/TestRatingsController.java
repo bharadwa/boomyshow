@@ -38,13 +38,13 @@ public class TestRatingsController {
         user1 = new User();
         user1.setName("John Doe");
         user1.setEmail("john@doe.com");
-        user1.setPhoneNumber("+918071563412");
+
         user1 = userRepository.save(user1);
 
         user2 = new User();
         user2.setName("Jane Doe");
         user2.setEmail("jane@doe.com");
-        user2.setPhoneNumber("+918078563412");
+
         user2 = userRepository.save(user2);
 
         movie = new Movie();
@@ -63,12 +63,12 @@ public class TestRatingsController {
 
     @Test
     public void testRateMovie_1stRatingByUser_Success(){
-        RateMovieRequestDto requestDto = new RateMovieRequestDto();
+        RateMovieRequestDTO requestDto = new RateMovieRequestDTO();
         requestDto.setUserId(user1.getId());
         requestDto.setMovieId(movie.getId());
         requestDto.setRating(5);
 
-        RateMovieResponseDto rateMovieResponseDto = ratingsController.rateMovie(requestDto);
+        RateMovieResponseDTO rateMovieResponseDto = ratingsController.rateMovie(requestDto);
         assertNotNull(rateMovieResponseDto, "Response should be not null");
         assertEquals(ResponseStatus.SUCCESS, rateMovieResponseDto.getResponseStatus(), "Response status should be SUCCESS");
 
@@ -82,12 +82,12 @@ public class TestRatingsController {
 
     @Test
     public void testRateMovie_DoubleRatingByUser_Success(){
-        RateMovieRequestDto requestDto = new RateMovieRequestDto();
+        RateMovieRequestDTO requestDto = new RateMovieRequestDTO();
         requestDto.setUserId(user1.getId());
         requestDto.setMovieId(movie.getId());
         requestDto.setRating(5);
 
-        RateMovieResponseDto rateMovieResponseDto = ratingsController.rateMovie(requestDto);
+        RateMovieResponseDTO rateMovieResponseDto = ratingsController.rateMovie(requestDto);
 
         //Rating for the 2nd time
         requestDto.setRating(4);
@@ -106,12 +106,12 @@ public class TestRatingsController {
 
     @Test
     public void testRateMovie_UserNotFound_Failure(){
-        RateMovieRequestDto requestDto = new RateMovieRequestDto();
+        RateMovieRequestDTO requestDto = new RateMovieRequestDTO();
         requestDto.setUserId(100);
         requestDto.setMovieId(movie.getId());
         requestDto.setRating(5);
 
-        RateMovieResponseDto rateMovieResponseDto = ratingsController.rateMovie(requestDto);
+        RateMovieResponseDTO rateMovieResponseDto = ratingsController.rateMovie(requestDto);
         assertNotNull(rateMovieResponseDto, "Response should be not null");
         assertEquals(ResponseStatus.FAILURE, rateMovieResponseDto.getResponseStatus(), "Response status should be FAILURE");
 
@@ -121,12 +121,12 @@ public class TestRatingsController {
 
     @Test
     public void testRateMovie_MovieNotFound_Failure(){
-        RateMovieRequestDto requestDto = new RateMovieRequestDto();
+        RateMovieRequestDTO requestDto = new RateMovieRequestDTO();
         requestDto.setUserId(user1.getId());
         requestDto.setMovieId(movie.getId() * 100);
         requestDto.setRating(5);
 
-        RateMovieResponseDto rateMovieResponseDto = ratingsController.rateMovie(requestDto);
+        RateMovieResponseDTO rateMovieResponseDto = ratingsController.rateMovie(requestDto);
         assertNotNull(rateMovieResponseDto, "Response should be not null");
         assertEquals(ResponseStatus.FAILURE, rateMovieResponseDto.getResponseStatus(), "Response status should be FAILURE");
 
@@ -138,7 +138,7 @@ public class TestRatingsController {
     @Test
     public void testGetAverageMovieRating_Success(){
         //User 1 rates movie
-        RateMovieRequestDto requestDto = new RateMovieRequestDto();
+        RateMovieRequestDTO requestDto = new RateMovieRequestDTO();
         requestDto.setUserId(user1.getId());
         requestDto.setMovieId(movie.getId());
         requestDto.setRating(5);
@@ -150,9 +150,9 @@ public class TestRatingsController {
         ratingsController.rateMovie(requestDto);
 
         // Get average rating
-        GetAverageMovieRequestDto getAverageMovieRequestDto = new GetAverageMovieRequestDto();
+        GetAverageMovieRequestDTO getAverageMovieRequestDto = new GetAverageMovieRequestDTO();
         getAverageMovieRequestDto.setMovieId(movie.getId());
-        GetAverageMovieResponseDto getAverageMovieResponseDto = ratingsController.getAverageMovieRating(getAverageMovieRequestDto);
+        GetAverageMovieResponseDTO getAverageMovieResponseDto = ratingsController.getAverageMovieRating(getAverageMovieRequestDto);
         assertNotNull(getAverageMovieResponseDto, "Response should be not null");
         assertEquals(ResponseStatus.SUCCESS, getAverageMovieResponseDto.getResponseStatus(), "Response status should be SUCCESS");
         assertEquals(4.5, getAverageMovieResponseDto.getAverageRating(), 0.01,"Average rating should be 4.5");
@@ -161,7 +161,7 @@ public class TestRatingsController {
     @Test
     public void testGetAverageMovieRating_MovieNotFound_Failure(){
         //User 1 rates movie
-        RateMovieRequestDto requestDto = new RateMovieRequestDto();
+        RateMovieRequestDTO requestDto = new RateMovieRequestDTO();
         requestDto.setUserId(user1.getId());
         requestDto.setMovieId(movie.getId());
         requestDto.setRating(5);
@@ -173,9 +173,9 @@ public class TestRatingsController {
         ratingsController.rateMovie(requestDto);
 
         // Get average rating
-        GetAverageMovieRequestDto getAverageMovieRequestDto = new GetAverageMovieRequestDto();
+        GetAverageMovieRequestDTO getAverageMovieRequestDto = new GetAverageMovieRequestDTO();
         getAverageMovieRequestDto.setMovieId(movie.getId()*100);
-        GetAverageMovieResponseDto getAverageMovieResponseDto = ratingsController.getAverageMovieRating(getAverageMovieRequestDto);
+        GetAverageMovieResponseDTO getAverageMovieResponseDto = ratingsController.getAverageMovieRating(getAverageMovieRequestDto);
         assertNotNull(getAverageMovieResponseDto, "Response should be not null");
         assertEquals(ResponseStatus.FAILURE, getAverageMovieResponseDto.getResponseStatus(), "Response status should be FAILURE");
     }

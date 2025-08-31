@@ -26,14 +26,12 @@ public class Movie extends BaseModel {
     @ManyToMany(fetch = FetchType.LAZY)
     private List<Actor> actors;
 
-    @Convert(converter = LanguageTypeListConverter.class)
+    @Enumerated(EnumType.STRING)
+    @ElementCollection(fetch = FetchType.LAZY)
     private List<LanguageType>  languagesSupported;
 
-    @Convert(converter = FormatTypeListConvertor.class)
+    @Enumerated(EnumType.STRING)
+    @ElementCollection(fetch = FetchType.LAZY)
     private List<FormatType> features;
-
-    @OneToMany(mappedBy = "movie", fetch = FetchType.LAZY)
-    private List<Rating> ratings;
-
 
 }

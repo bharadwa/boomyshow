@@ -7,23 +7,25 @@ import org.example.bookmyshow.exceptions.MovieNotFoundException;
 import org.example.bookmyshow.exceptions.UserNotFoundException;
 import org.example.bookmyshow.services.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
-@Controller
-public class BookingController {
+@RequestMapping("/bookings")
+@RestController
+public class BookingRestController {
 
     private final BookingService bookingService;
 
     @Autowired
-    public BookingController(BookingService bookingService) {
+    public BookingRestController(BookingService bookingService) {
         this.bookingService = bookingService;
     }
 
 
-    public BookingTicketResponseDTO bookingTicket(BookingTicketRequestDTO bookingTicketRequestDTO) {
+    @PostMapping("/book")
+    public BookingTicketResponseDTO bookTicket(@RequestBody  BookingTicketRequestDTO bookingTicketRequestDTO) {
         BookingTicketResponseDTO response = new BookingTicketResponseDTO();
 
         try {
@@ -35,8 +37,4 @@ public class BookingController {
 
         return response;
     }
-
-
-
-
 }
