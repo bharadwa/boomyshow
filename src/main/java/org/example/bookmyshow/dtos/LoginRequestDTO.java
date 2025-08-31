@@ -1,10 +1,9 @@
 package org.example.bookmyshow.dtos;
 
+import java.io.Serializable;
+
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.SecondaryRow;
-
-import java.io.Serializable;
 
 @Getter
 @Setter

@@ -1,11 +1,10 @@
 package org.example.bookmyshow.services;
 
-import org.example.bookmyshow.dtos.BookingTicketResponseDTO;
+import java.util.List;
+
 import org.example.bookmyshow.exceptions.MovieNotFoundException;
 import org.example.bookmyshow.exceptions.UserNotFoundException;
 import org.example.bookmyshow.models.Booking;
-
-import java.util.List;
 
 public interface BookingService {
 

@@ -1,11 +1,11 @@
 package org.example.bookmyshow.models;
-import jakarta.persistence.CascadeType;
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.OneToMany;
 import lombok.Getter;
 import lombok.Setter;
-import jakarta.persistence.OneToMany;
-import java.util.List;
 
 @Getter
 @Setter

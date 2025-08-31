@@ -1,7 +1,6 @@
 package org.example.bookmyshow.repositories;
 
 import org.example.bookmyshow.models.Screen;
-import org.springframework.data.convert.ReadingConverter;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

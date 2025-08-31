@@ -1,12 +1,20 @@
 package org.example.bookmyshow.controllers;
 
-import jakarta.websocket.server.PathParam;
-import org.example.bookmyshow.dtos.*;
+import org.example.bookmyshow.dtos.LoginRequestDTO;
+import org.example.bookmyshow.dtos.LoginResponseDTO;
 import org.example.bookmyshow.dtos.ResponseStatus;
+import org.example.bookmyshow.dtos.SignUpUserRequestDTO;
+import org.example.bookmyshow.dtos.SignUpUserResponseDTO;
+import org.example.bookmyshow.dtos.UserViewDTO;
 import org.example.bookmyshow.models.User;
 import org.example.bookmyshow.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RequestMapping("/users")
 @RestController

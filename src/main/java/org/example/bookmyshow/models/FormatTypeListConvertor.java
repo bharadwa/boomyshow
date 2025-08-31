@@ -1,11 +1,11 @@
 package org.example.bookmyshow.models;
 
-import jakarta.persistence.AttributeConverter;
-
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import jakarta.persistence.AttributeConverter;
 
 public class FormatTypeListConvertor implements AttributeConverter<List<FormatType>,String> {
 

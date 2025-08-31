@@ -6,7 +6,7 @@ import lombok.Setter;
 import org.example.bookmyshow.models.FormatType;
 import org.example.bookmyshow.models.LanguageType;
 import org.example.bookmyshow.models.SeatType;
-import org.example.bookmyshow.models.Show;
+
 
 import java.io.Serializable;
 import java.util.Date;

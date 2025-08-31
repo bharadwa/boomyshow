@@ -3,7 +3,7 @@ package org.example.bookmyshow.controllers;
 import org.example.bookmyshow.dtos.CreateShowRequestDTO;
 import org.example.bookmyshow.dtos.CreateShowResponseDTO;
 import org.example.bookmyshow.dtos.ResponseStatus;
-import org.example.bookmyshow.models.Show;
+
 import org.example.bookmyshow.services.ShowService;
 import org.springframework.stereotype.Controller;
 

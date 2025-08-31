@@ -1,16 +1,20 @@
 package org.example.bookmyshow.services;
 
+import java.util.List;
+
 import org.example.bookmyshow.exceptions.MovieNotFoundException;
 import org.example.bookmyshow.exceptions.UserNotFoundException;
-import org.example.bookmyshow.models.*;
+import org.example.bookmyshow.models.Booking;
+import org.example.bookmyshow.models.BookingStatus;
+import org.example.bookmyshow.models.SeatStatus;
+import org.example.bookmyshow.models.ShowSeat;
+import org.example.bookmyshow.models.User;
 import org.example.bookmyshow.repositories.BookingRepository;
 import org.example.bookmyshow.repositories.ShowRepository;
 import org.example.bookmyshow.repositories.ShowSeatRepository;
 import org.example.bookmyshow.repositories.UserRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 @Service
 public class BookingServiceImpl implements BookingService {
