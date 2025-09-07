@@ -10,6 +10,8 @@ public class BookingTicketRequestDTO implements Serializable {
 
     private long userId;
 
+    private long showId;
+
     private List<Long> seatNumbers;
 
 

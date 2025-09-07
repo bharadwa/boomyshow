@@ -26,7 +26,6 @@ public class JWTUtils {
     private long jwtExpirationInMs;
 
 
-
     public String generateToken(User user){
          SecretKey key = Keys.hmacShaKeyFor(secretKey.getBytes(StandardCharsets.UTF_8));
         return Jwts.builder().issuedAt(new Date()).expiration( new Date(System.currentTimeMillis() + jwtExpirationInMs)).claims(putClaims(user)).signWith(key).compact();

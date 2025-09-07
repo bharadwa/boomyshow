@@ -13,5 +13,5 @@ import java.util.List;
 public interface ShowSeatRepository extends JpaRepository<ShowSeat,Long> {
 
     @Lock(LockModeType.PESSIMISTIC_WRITE)
-    List<ShowSeat> findAllByIdInAndSeatStatus(Iterable<Long>ids, SeatStatus seatStatus);
+    List<ShowSeat> findAllByIdInAndShowIdAndSeatStatus(Iterable<Long>ids,Long showId, SeatStatus seatStatus);
 }

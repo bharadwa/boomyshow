@@ -13,6 +13,8 @@ public class Seat extends BaseModel {
     private int seatRow;
     private int seatCol;
     private String seatNumber;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Screen screen;
+    @ManyToOne
+    private SeatType seatType;
 }

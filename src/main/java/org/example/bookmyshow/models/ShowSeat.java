@@ -10,10 +10,10 @@ import lombok.Setter;
 public class ShowSeat extends BaseModel {
 
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Show show;
 
-    @ManyToOne(fetch =  FetchType.LAZY)
+    @ManyToOne(fetch =  FetchType.EAGER)
     private Seat seat;
 
     @Enumerated(EnumType.STRING)
