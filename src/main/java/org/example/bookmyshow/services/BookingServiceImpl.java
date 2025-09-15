@@ -22,7 +22,7 @@ public class BookingServiceImpl implements BookingService {
 
     private final ShowSeatRepository showSeatRepository;
 
-    private final ShowSeatPriceRepository showSeatPriceRepository;
+    private final ShowSeatTypeRepository showSeatTypeRepository;
 
     private final SeatRepository seatRepository;
 
@@ -31,13 +31,13 @@ public class BookingServiceImpl implements BookingService {
                               UserRepository userRepository,
                               ShowRepository showRepository,
                               ShowSeatRepository showSeatRepository,
-                              ShowSeatPriceRepository showSeatPriceRepository,
+                              ShowSeatTypeRepository showSeatTypeRepository,
                               SeatRepository seatRepository) {
         this.bookingRepository = bookingRepository;
         this.userRepository = userRepository;
         this.showRepository = showRepository;
         this.showSeatRepository = showSeatRepository;
-        this.showSeatPriceRepository = showSeatPriceRepository;
+        this.showSeatTypeRepository = showSeatTypeRepository;
         this.seatRepository = seatRepository;
     }
 
@@ -76,7 +76,7 @@ public class BookingServiceImpl implements BookingService {
 
         this.showSeatRepository.saveAll(showSeatList);
 
-        Optional<ShowSeatPrice> showSeatPrice= this.showSeatPriceRepository.findByShowIdAndSeatType(showSeatList.get(0).getShow().getId(),showSeatList.get(0).getSeat().getSeatType());
+        Optional<ShowSeatType> showSeatPrice= this.showSeatTypeRepository.findByShowIdAndSeatType(showSeatList.get(0).getShow().getId(),showSeatList.get(0).getSeat().getSeatType());
         Booking booking=new Booking();
         booking.setUser(user);
         booking.setShowSeats(showSeatList);

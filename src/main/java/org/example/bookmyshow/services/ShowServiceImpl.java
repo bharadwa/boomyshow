@@ -21,7 +21,7 @@ public class ShowServiceImpl  implements ShowService {
     private final UserRepository userRepository;
     private final ShowSeatRepository showSeatRepository;
     private final ScreenRepository screenRepository;
-    private final ShowSeatPriceRepository showSeatPriceRepository;
+    private final ShowSeatTypeRepository showSeatTypeRepository;
     private final MovieRepository movieRepository;
 
     @Autowired
@@ -29,13 +29,13 @@ public class ShowServiceImpl  implements ShowService {
                            UserRepository userRepository,
                            ShowSeatRepository showSeatRepository,
                            ScreenRepository screenRepository,
-                           ShowSeatPriceRepository showSeatPriceRepository,
+                           ShowSeatTypeRepository showSeatTypeRepository,
                            MovieRepository movieRepository) {
         this.showRepository = showRepository;
         this.userRepository = userRepository;
         this.showSeatRepository = showSeatRepository;
         this.screenRepository = screenRepository;
-        this.showSeatPriceRepository = showSeatPriceRepository;
+        this.showSeatTypeRepository = showSeatTypeRepository;
         this.movieRepository = movieRepository;
     }
 
@@ -81,16 +81,16 @@ public class ShowServiceImpl  implements ShowService {
              showSeatRepository.saveAll(showSeats);
          }
             if(!CollectionUtils.isEmpty(pricingConfig)) {
-                List<ShowSeatPrice> showSeatPrices=new ArrayList<>();
+                List<ShowSeatType> showSeatPrices=new ArrayList<>();
                 pricingConfig.stream().forEach( pair -> {
-                    ShowSeatPrice showSeatPrice=new ShowSeatPrice();
+                    ShowSeatType showSeatPrice=new ShowSeatType();
                     showSeatPrice.setSeatType(pair.getFirst());
                     showSeatPrice.setPrice(pair.getSecond());
                     showSeatPrice.setShow(savedShow);
                     showSeatPrice.setCreateAt(new Date());
                     showSeatPrices.add(showSeatPrice);
                 });
-                showSeatPriceRepository.saveAll(showSeatPrices);
+                showSeatTypeRepository.saveAll(showSeatPrices);
             }
 
          return savedShow;

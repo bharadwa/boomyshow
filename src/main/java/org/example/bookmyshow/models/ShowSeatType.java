@@ -7,8 +7,8 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@Entity(name="show_seat_prices")
-public class ShowSeatPrice extends BaseModel {
+@Entity(name="show_seat_type")
+public class ShowSeatType extends BaseModel {
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Show show;
