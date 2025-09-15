@@ -1,17 +1,11 @@
 package org.example.bookmyshow.models;
 
-import java.util.Date;
-import java.util.List;
-
-import jakarta.persistence.ElementCollection;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -36,7 +30,7 @@ public class Show extends BaseModel {
     private List<ShowSeat> showSeatList;
 
     @OneToMany(mappedBy = "show",fetch = FetchType.LAZY)
-    private List<ShowSeatPrice> showSeatPriceList;
+    private List<ShowSeatType> showSeatTypes;
 
     @Enumerated(EnumType.STRING)
     private LanguageType language;
