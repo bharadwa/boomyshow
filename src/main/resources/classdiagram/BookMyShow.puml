@@ -1,0 +1,218 @@
+@startuml
+
+enum UserType {
+ ADMIN,
+ CUSTOMER
+}
+
+class User {
+   -id    : long
+   -name  : String
+   -email : String
+   -phoneNumber:String
+   -userType : UserType
+}
+
+' dependency
+User ..> UserType : uses
+
+
+class Region {
+   -id :long
+   -name :String
+   -theatres : List<Theatre>
+}
+
+' composition
+Region *--> Theatre :theatres
+
+class Theatre  {
+  -id   :long
+  -name :String
+  -address :String
+  -screens : List<Screen>
+}
+
+' composition
+Theatre *--> Screen :has
+
+class Screen {
+   -id :long
+   -seats : List<Seat>
+   -theatre :Theatre
+}
+
+' composition
+Screen *--> Seat :has
+
+class Seat {
+  -id :long
+  -rol :int
+  -col :int
+  -seatNumber :String
+  -seatType :SeatType
+}
+
+' composition
+Seat *--> SeatType :have
+
+class Actors {
+   -id :long
+   -name: String
+   -address :String
+   -phoneNumber:String
+   -movies :List<Movie>
+}
+Actors "0..*" -- "0..*" Movie : acts_in
+
+enum FormatType {
+ TWO_D
+ THREE_D
+ DOLBY_ATMOS
+ 4DX
+}
+
+enum LanguageType{
+  HINDI,
+  TELUGU,
+  ENGLISH,
+  KANNADA,
+  TAMIL,
+  MALAYALAM
+}
+class Movie {
+  -id : long
+  -String :name
+  -actors :List<Actors>
+}
+
+class Show {
+ -id :long
+ -movie :Movie
+ -screen :Screen
+ -startTime :Date
+ -endTime : Date
+ -languageType :LanguageType
+ -formatTypes :List<FormatType>
+ -showSeats   :List<ShowSeat>
+ -showSeatTypes:List<ShowSeatType>
+}
+
+' Association
+Show --> Movie :refers
+Show --> Screen : refers
+
+' Composition
+Show *--> ShowSeat :has
+Show *--> ShowSeatType :has
+
+' Dependency
+Show ..> LanguageType : uses
+Show --> FormatType   :uses
+
+
+enum SeatStatus {
+   AVAILABLE
+   BOOKED
+   LOCKED
+}
+class ShowSeat {
+-id     : long
+-show   : Show
+-seat   : Seat
+-status : SeatStatus
+}
+
+' Association
+ShowSeat --> Show : refers
+ShowSeat --> Seat   :refers
+
+' Dependency
+ShowSeat ..> SeatStatus :uses
+
+class SeatType {
+ -id   :long
+ -type : String
+}
+
+class ShowSeatType {
+ -id :long
+ -show :Show
+ -seatType :SeatType
+ -price :int
+}
+
+' Association
+ShowSeatType --> Show :refers
+ShowSeatType --> SeatType :refers
+
+enum BookingStatus {
+    PENDING,
+    CONFIRMED,
+    CANCELLED,
+    PENDING_PAYMENT,
+    COMPLETED
+}
+class Ticket {
+-id :long
+-show :Show
+-bookedDate :Date
+-showSeats :List<ShowSeat>
+-payments  :List<Payment>
+-bookingStatus: BookingStatus
+-amount :int
+-noOfSeats :int
+}
+' Association
+Ticket --> Show :refers
+
+' Aggregation
+Ticket o--> ShowSeat :has
+
+' Composition
+Ticket *--> Payment : has
+
+' Dependency
+Ticket ..> BookingStatus :uses
+
+
+enum PaymentProvider  {
+    RAZORPAY,
+    PAYU,
+    CCAVENUE,
+}
+
+enum PaymentType {
+  COUPON,
+  MONEY,
+  REFUND,
+  DISCOUNT
+}
+
+enum PaymentStatus {
+    SUCCESS,
+    FAILURE,
+    PENDING,
+}
+
+class Payment {
+ -id :long
+ -paymentStatus :PaymentStatus
+ -paymentType  :PaymentType
+ -paymentProvider :PaymentProvider
+ -ticket :Ticket
+ -paymentDate :Date
+ -refId:String
+ -amount:int
+}
+
+' Dependency
+Payment ..> PaymentStatus :uses
+Payment ..> PaymentType :uses
+Payment ..> PaymentProvider :uses
+
+' Association
+Payment --> Ticket : refers
+
+
+@enduml

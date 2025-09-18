@@ -23,7 +23,7 @@ public class Booking extends BaseModel {
     private double amount;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private User user;
+    private User bookedBy;
 
     @OneToMany(mappedBy = "booking", fetch = FetchType.LAZY)
     private List<Payment> payments;
